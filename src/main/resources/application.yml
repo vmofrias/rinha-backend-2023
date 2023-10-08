@@ -1,0 +1,32 @@
+logging:
+  level:
+    root: WARN
+# localmente use o INFO
+#   root: INFO
+
+server:
+  compression:
+    enabled: true
+    min-response-size: 1024
+  port: ${SERVER_PORT:9999}
+  tomcat:
+    connection-timeout : 120000
+    max-connections: 1000
+
+spring:
+  application:
+    name: rinha-backend-2023
+  banner:
+    location: rinha2023.txt
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://${db_host:localhost}:5432/${db_name:rinhadb}?socketTimeoutMS=360000&connectTimeoutMS=360000&maxPoolSize=50&minPoolSize=50
+    username: ${db_user}
+    password: ${db_password}
+    driverClassName: org.postgresql.Driver
+  mvc:
+    async:
+      request-timeout: 600000
