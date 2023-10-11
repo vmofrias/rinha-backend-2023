@@ -1,51 +1,38 @@
 version: '3.9'
 name: 'rinha-de-backend'
 
-#  1.5 CPUs = 0.65 MongoDB + 2 x 0.4 Spring Boot + 0.05 NGinx
-#    3.0 GB = 0.90 MongoDB + 2 x 1.00 Spring Boot + 0.10 NGinx
-
 services:
   spring-api1:
-#    image: boaglio/rinhabackend2023:latest
-    image: docker.io/library/rinhabackend2023:0.0.1-SNAPSHOT
-    hostname: spring-api1
+    image: localhost/rinhabackend2023:0.0.1-SNAPSHOT
+    container_name: spring-api1
     environment:
       - SERVER_PORT=8080
-      - MONGO_URI=mongodb://db-mongodb:27017/rinhadb?socketTimeoutMS=360000&connectTimeoutMS=360000&maxPoolSize=50&minPoolSize=50
+      - db_user=rinha_user
+      - db_password=rinha2023
+      - db_host=192.168.15.114
     depends_on:
-      - db-mongodb
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
+      - postgres-db
     deploy:
       resources:
         limits:
           cpus: '0.55'
           memory: '1GB'
-    networks:
-      - app-network
 
   spring-api2:
-    #    image: boaglio/rinhabackend2023:latest
-    image: docker.io/library/rinhabackend2023:0.0.1-SNAPSHOT
-    hostname: spring-api2
+    image: localhost/rinhabackend2023:0.0.1-SNAPSHOT
+    container_name: spring-api2
     environment:
       - SERVER_PORT=8080
-      - MONGO_URI=mongodb://db-mongodb:27017/rinhadb?socketTimeoutMS=360000&connectTimeoutMS=360000&maxPoolSize=50&minPoolSize=50
+      - db_user=rinha_user
+      - db_password=rinha2023
+      - db_host=192.168.15.114
     depends_on:
-      - db-mongodb
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
+      - postgres-db
     deploy:
       resources:
         limits:
           cpus: '0.55'
           memory: '1GB'
-    networks:
-        - app-network
 
   nginx:
     image: nginx:latest
@@ -56,25 +43,24 @@ services:
       - spring-api2
     ports:
       - "9999:9999"
-    networks:
-      - app-network
     deploy:
       resources:
         limits:
           cpus: '0.05'
           memory: '0.1GB'
 
-  db-mongodb:
-    image: mongo:latest
+  postgres-db:
+    image: docker.io/library/postgres:15.2-alpine
+    container_name: postgres-db
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=rinha_user
+      - POSTGRES_PASSWORD=rinha2023
+      - POSTGRES_DB=rinhadb
     ports:
-      - "27017:27017"
+      - 5432:5432
     deploy:
       resources:
         limits:
           cpus: '0.35'
           memory: '0.9GB'
-    networks:
-      - app-network
-
-networks:
-  app-network:
