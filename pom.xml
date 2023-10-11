@@ -14,7 +14,7 @@
 	<name>RinhaBackend</name>
 	<description>Projeto para a Rinha de Backend 2023</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>20</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
