@@ -70,11 +70,9 @@ public class PessoaController {
     @GetMapping("/contagem-pessoas")
     public ResponseEntity<String> count() {
 
-        // uso do cache
         log.error("cacheLocalPorId = "+Cache.cacheLocalPorId.size());
         log.error("cacheLocalDeApelidos = "+Cache.cacheLocalDeApelidos.size());
 
-        // uso de erros
         log.error("httpMessageNotReadableException =  "+ApiExceptionHandler.httpMessageNotReadableException);
         log.error("missingServletRequestParameterException = "+ ApiExceptionHandler.missingServletRequestParameterException);
 
