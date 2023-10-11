@@ -1,7 +1,6 @@
 logging:
   level:
     root: WARN
-# localmente use o INFO
 #   root: INFO
 
 server:
