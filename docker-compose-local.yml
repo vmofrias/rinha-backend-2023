@@ -8,12 +8,8 @@ services:
       - db_user=rinha_user
       - db_password=rinha2023
       - db_host=192.168.15.114
-#    depends_on:
-#      - postgres-db
-#    ulimits:
-#      nofile:
-#        soft: 1000000
-#        hard: 1000000
+    depends_on:
+      - postgres-db
     ports:
       - "9999:9999"
     deploy:
@@ -21,6 +17,7 @@ services:
         limits:
           cpus: '0.8'
           memory: '1GB'
+          
   postgres-db:
     image: docker.io/library/postgres:15.2-alpine
     container_name: postgres-db
