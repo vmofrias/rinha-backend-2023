@@ -1,7 +1,7 @@
 
 # Rinha de Backend 2023 - Java
 
-Link para o repo oficial da rinha: `https://github.com/zanfranceschi/rinha-de-backend-2023-q3`
+Link para o repo oficial da rinha: []`https://github.com/zanfranceschi/rinha-de-backend-2023-q3`
 
 ## Pré-requisitos
 
