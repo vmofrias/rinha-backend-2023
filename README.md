@@ -9,6 +9,7 @@ Link para o repo oficial da rinha: `https://github.com/zanfranceschi/rinha-de-ba
 * Maven
 * PostgreSQL
 * Docker/Podman
+* Gatling v3.9.5
 
 ## Como subir o projeto
 
@@ -26,9 +27,7 @@ Link para o repo oficial da rinha: `https://github.com/zanfranceschi/rinha-de-ba
   docker build . -t localhost/rinhabackend2023:0.0.1-SNAPSHOT
 ```
 
-#### - Você pode utilizar o docker-compose-local.yml ou o docker-compose-aws.yml:
-
-Obs: Você pode abrir o arquivo da sua escolha para mudar as variáveis de ambiente de cada serviço.
+##### - Você pode utilizar o docker-compose-local.yml ou o docker-compose-aws.yml para subir os serviços. Abra o arquivo da sua escolha para ajustar as variáveis de ambiente dos serviços.
 
 #### - Para utilizar o docker-compose, digite:
 
@@ -43,9 +42,9 @@ ou
 
 ## Stress Test
 
-#### - Mude para o diretório ```/rinhabackend/stress-test```.
+#### - Mude para o diretório ```/rinhabackend/stress-test```. Abra o arquivo ```run-test.sh``` com o editor de texto da sua preferência e ajuste as variáveis ```GATLING_BIN_DIR``` e ```WORKSPACE```, que devem apontar para o bin do Gatling e o diretório do stress-test, respectivamente. 
 
-#### - E execute o script para rodar o teste de stress:
+#### - Em seguida execute o script para rodar o teste de stress:
 
 ```bash
   ./run-test.sh
